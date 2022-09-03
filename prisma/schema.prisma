@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Medic {
+  id       Int     @id @default(autoincrement())
+  crm      Int  @unique
+  name     String @db.VarChar(255)
+  email    String  @unique @db.VarChar(255)
+  cellphone Int 
+  specialty String @db.VarChar(255)
+  password String
+  schedules Schedule[]
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+}
+
+model Pacient {
+  id        Int     @id @default(autoincrement())
+  name      String @db.VarChar(255)
+  email     String  @unique @db.VarChar(255)
+  cellphone Int
+  cpf       Int @unique
+  gender    String @db.VarChar(255)
+  age       Int
+  neighborhood String @db.VarChar(255)
+  city String @db.VarChar(255)
+  street String @db.VarChar(255)  
+  password  String
+  schedules Schedule[]
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+}
+
+model Secretary {
+  id       Int     @id @default(autoincrement())
+  name     String @db.VarChar(255)
+  email    String  @unique @db.VarChar(255)
+  cellphone Int
+  password String
+  schedules Schedule[]
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+}
+
+model Schedule {
+  id        Int     @id @default(autoincrement())
+  date      String
+  status   String @db.VarChar(255)
+  observation String @db.VarChar(255)
+  medic     Medic?   @relation(fields: [medicCrm], references: [crm])
+  medicCrm   Int?
+  pacient   Pacient? @relation(fields: [pacientCpf], references: [cpf])
+  pacientCpf Int?
+  secretary Secretary? @relation(fields: [secretaryId], references: [id])
+  secretaryId Int?
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+
+}
