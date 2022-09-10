@@ -61,7 +61,7 @@ export const signup = async (req, reply) => {
 export const login = async (req, reply) => {
   try {
     const { email, password } = req.body;
-
+    console.log(req.body);
     let medic = await prisma.medic.findUnique({ where: { email } });
     let pacient = await prisma.pacient.findUnique({ where: { email } });
     let secretary = await prisma.secretary.findUnique({ where: { email } });
@@ -71,9 +71,9 @@ export const login = async (req, reply) => {
     }
 
     if (
-      !(await comparePassword(password, medic.password)) &&
-      !(await comparePassword(password, pacient.password)) &&
-      !(await comparePassword(password, secretary.password))
+      (medic && !(await comparePassword(password, medic.password))) ||
+      (pacient && !(await comparePassword(password, pacient.password))) ||
+      (secretary && !(await comparePassword(password, secretary.password)))
     ) {
       return reply.status(401).send({ error: "Invalid email or password" });
     }
@@ -86,7 +86,7 @@ export const login = async (req, reply) => {
     } else if (pacient) {
       let { password: pass, ...data } = pacient;
       return reply.send({
-        user: data,
+        pacient: data,
         accessToken: await createAccessToken(data),
       });
     } else if (secretary) {
