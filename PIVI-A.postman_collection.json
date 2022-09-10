@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "42d08bcc-2b06-410f-81de-cff7e3cf104f",
+		"name": "PIVI-A",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18512125"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "SIGNUP Pacient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Paciente1\",\r\n    \"password\": \"12345\",\r\n    \"username\" : \"paciente1\",\r\n    \"email\" : \"paciente1@gmail.com\",\r\n    \"cpf\" : \"00000400002\",\r\n    \"cellphone\" : \"000000000\",\r\n    \"neighborhood\" : \"Centro\",\r\n    \"city\" : \"Pelotas\",\r\n    \"street\" : \"General Vitorino\",\r\n    \"age\" : \"21\",\r\n    \"gender\" : \"Masculino\",\r\n    \"type\": \"pacient\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SIGNUP Medic",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Medico1\",\r\n    \"password\": \"1234\",\r\n    \"crm\": \"2341\",\r\n    \"specialty\": \"clinica geral\",\r\n    \"username\" : \"Medico1\",\r\n    \"email\" : \"medico1@gmail.com\",\r\n    \"cellphone\" : \"000000000\",\r\n    \"type\": \"medic\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SIGNUP Secretary",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Secretaria1\",\r\n    \"password\": \"1234\",\r\n    \"username\" : \"Secretaria1\",\r\n    \"email\" : \"secretaria1@gmail.com\",\r\n    \"cellphone\" : \"000000000\",\r\n    \"type\": \"secretary\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"secretaria1@gmail.com\",\r\n    \"password\" : \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medic",
+			"item": [
+				{
+					"name": "Get medics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/medics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"medics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pacient",
+			"item": [
+				{
+					"name": "Get pacients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/pacients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pacients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Schedules",
+			"item": [
+				{
+					"name": "Post Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlBhY2llbnRlMiIsImVtYWlsIjoicGFjaWVudGUyQGdtYWlsLmNvbSIsImNlbGxwaG9uZSI6MCwiY3BmIjo0MDAwMDEsImdlbmRlciI6Ik1hc2N1bGlubyIsImFnZSI6MjEsIm5laWdoYm9yaG9vZCI6IkNlbnRybyIsImNpdHkiOiJQZWxvdGFzIiwic3RyZWV0IjoiR2VuZXJhbCBWaXRvcmlubyIsImNyZWF0ZWRBdCI6IjIwMjItMDktMDlUMjI6MDk6NTUuNTk0WiIsImlhdCI6MTY2Mjc2MzIyMH0.aQVEe_rjMV0FCyRCQY3cbHf6C54ZU0cesIOaEPy8M0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\": \"21/12/2023\",\n    \"status\": \"schedule\",\n    \"observation\": \"Paciente com diabates\",\n    \"medicCrm\": \"2341\",\n    \"pacientCpf\": \"400002\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/schedules",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"schedules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlBhY2llbnRlMiIsImVtYWlsIjoicGFjaWVudGUyQGdtYWlsLmNvbSIsImNlbGxwaG9uZSI6MCwiY3BmIjo0MDAwMDEsImdlbmRlciI6Ik1hc2N1bGlubyIsImFnZSI6MjEsIm5laWdoYm9yaG9vZCI6IkNlbnRybyIsImNpdHkiOiJQZWxvdGFzIiwic3RyZWV0IjoiR2VuZXJhbCBWaXRvcmlubyIsImNyZWF0ZWRBdCI6IjIwMjItMDktMDlUMjI6MDk6NTUuNTk0WiIsImlhdCI6MTY2Mjc2MzIyMH0.aQVEe_rjMV0FCyRCQY3cbHf6C54ZU0cesIOaEPy8M0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"Realizada\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/schedules/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"schedules",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get schedules",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlNlY3JldGFyaWExIiwiZW1haWwiOiJzZWNyZXRhcmlhMUBnbWFpbC5jb20iLCJjZWxscGhvbmUiOjAsImNyZWF0ZWRBdCI6IjIwMjItMDktMDlUMjI6MTA6MDIuMTQxWiIsImlhdCI6MTY2MjgxNjA1N30.VnFv6WokHdvDRLmkBCNsOrvuLocs9GrwcoZwDuAty5g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/schedules",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"schedules"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
