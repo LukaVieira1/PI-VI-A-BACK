@@ -53,10 +53,10 @@ model Schedule {
   date      String
   status   String @db.VarChar(255)
   observation String @db.VarChar(255)
-  medic     Medic?   @relation(fields: [medicCrm], references: [crm])
-  medicCrm   Int?
-  pacient   Pacient? @relation(fields: [pacientCpf], references: [cpf])
-  pacientCpf Int?
+  medic     Medic?  @relation(fields: [medicCrm], references: [crm])
+  medicCrm   Int
+  pacient   Pacient @relation(fields: [pacientCpf], references: [cpf])
+  pacientCpf Int
   secretary Secretary? @relation(fields: [secretaryId], references: [id])
   secretaryId Int?
   createdAt DateTime @default(now()) @db.Timestamp(6)

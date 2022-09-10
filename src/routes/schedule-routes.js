@@ -7,22 +7,16 @@ export default {
     preHandler: [validateRequest],
     handler: ScheduleController.create,
   },
-  // Delete: {
-  //   method: "DELETE",
-  //   url: "/petweets/:id",
-  //   preHandler: [validateRequest],
-  //   handler: PetweetController.del,
-  // },
-  // GetAll: {
-  //   method: "GET",
-  //   url: "/petweets",
-  //   preHandler: [validateRequest, paginationParams],
-  //   handler: PetweetController.getAll,
-  // },
-  // GetByID: {
-  //   method: "GET",
-  //   url: "/petweets/:id",
-  //   preHandler: [validateRequest, paginationParams],
-  //   handler: PetweetController.getByID,
-  // },
+  Update: {
+    method: "PATCH",
+    url: "/schedules/:id",
+    preHandler: [validateRequest],
+    handler: ScheduleController.update,
+  },
+  Get: {
+    method: "GET",
+    url: "/schedules",
+    preHandler: [validateRequest],
+    handler: ScheduleController.get,
+  },
 };
