@@ -86,7 +86,7 @@ export const login = async (req, reply) => {
     } else if (pacient) {
       let { password: pass, ...data } = pacient;
       return reply.send({
-        pacient: data,
+        user: data,
         accessToken: await createAccessToken(data),
       });
     } else if (secretary) {
