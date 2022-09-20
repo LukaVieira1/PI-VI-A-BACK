@@ -5,7 +5,7 @@ export default {
   getAllPacients: {
     method: "GET",
     url: "/pacients",
-    // preHandler: [validateRequest],
+    preHandler: [validateRequest],
     handler: PacientController.index,
   },
 };
