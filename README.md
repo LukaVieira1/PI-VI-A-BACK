@@ -1,4 +1,6 @@
-# Boilerplate de back-end da Otterwise
+# PI
+
+Projeto desenvolvido para a materia de Projeto Integrador no curso de ADS.
 
 ## Tecnologias
 

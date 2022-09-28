@@ -1,5 +1,6 @@
 import { prisma } from "../helpers/utils.js";
 
+//Responsavel por retornar os pacientes existente
 export const index = async (req, res) => {
   try {
     let users = await prisma.pacient.findMany({

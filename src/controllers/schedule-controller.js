@@ -1,8 +1,10 @@
 import { prisma } from "../helpers/utils.js";
 
+//Responsavel pela criação de uma consulta, inserindo os dados na tabela schedule
 export const create = async (req, reply) => {
   try {
     const { date, status, observation, medicCrm, pacientCpf } = req.body;
+    //verifica se o usuario é uma secretaria ou nao
     if (!req.user.crm && !req.user.cpf) {
       const schedule = await prisma.schedule.create({
         data: {
@@ -15,6 +17,7 @@ export const create = async (req, reply) => {
         },
       });
       return reply.status(201).send(schedule);
+      //Em caso do usuario nao ser uma secretaria
     } else {
       const schedule = await prisma.schedule.create({
         data: {
@@ -33,9 +36,10 @@ export const create = async (req, reply) => {
   }
 };
 
+//Responsavel pela atualização do status de alguma determinada consulta
 export const update = async (req, reply) => {
+  //Necessario receber o id da consulta
   const { id } = req.params;
-
   try {
     const schedule = await prisma.schedule.update({
       where: { id: Number(id) },
@@ -48,8 +52,10 @@ export const update = async (req, reply) => {
   }
 };
 
+//Responsavel por trazer as consultas existentes no banco
 export const get = async (req, reply) => {
   try {
+    //Caso seja secretaria, traz todas as consultas
     if (!req.user.crm && !req.user.cpf) {
       const schedules = await prisma.schedule.findMany({
         include: {
@@ -72,6 +78,7 @@ export const get = async (req, reply) => {
         },
       });
       return reply.status(201).send(schedules);
+      //Caso seja medica, traz somente as consultas do medico logado
     } else if (req.user.crm) {
       const schedules = await prisma.schedule.findMany({
         where: {
@@ -97,6 +104,7 @@ export const get = async (req, reply) => {
         },
       });
       return reply.status(201).send(schedules);
+      //Caso seja paciente, traz somente as consultas do paciente logado
     } else if (req.user.cpf) {
       const schedules = await prisma.schedule.findMany({
         where: {
